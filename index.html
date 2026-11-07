@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KhacDuc Hub - Dịch Vụ MXH & Cày Thuê Roblox</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --card-bg: #151c2c;
+            --primary: #3b82f6;
+            --accent: #00f2fe;
+            --danger: #ef4444;
+            --success: #10b981;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 70%);
+            min-height: 100vh;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-top {
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .contact-top:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.7);
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* Filter Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            color: var(--text-sub);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Services Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.12);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge.hot { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+        .badge.vip { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .price-list {
+            list-style: none;
+            margin: 15px 0 25px;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        .price-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .price-list li span.price {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .order-btn {
+            width: 100%;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .order-btn:hover {
+            background: var(--accent);
+            color: #0b0f19;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-sub);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .fb-btn { background: #1877f2; }
+        .tiktok-btn { background: #000000; border: 1px solid #333; }
+        .zalo-btn { background: #0068ff; }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-bolt"></i> KhacDuc Service</div>
+        <a href="javascript:void(0)" onclick="openModal('Tư vấn dịch vụ tổng hợp')" class="contact-top">
+            <i class="fa-solid fa-headset"></i> Hỗ Trợ 24/7
+        </a>
+    </header>
+
+    <section class="hero">
+        <h1>Hệ Thống Dịch Vụ <span>MXH & Roblox</span></h1>
+        <p>Chuyên cày thuê Blox Fruits, xử lý tài khoản MXH (Dame/Unlock), cung cấp tài nguyên Via, Clone, Reg và buff tương tác đa nền tảng uy tín - nhanh gọn.</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="filterServices('all')">Tất Cả</button>
+            <button class="tab-btn" onclick="filterServices('roblox')">Cày Thuê Roblox</button>
+            <button class="tab-btn" onclick="filterServices('dame')">Dame / Unlock Acc</button>
+            <button class="tab-btn" onclick="filterServices('resource')">Bán Tài Nguyên</button>
+            <button class="tab-btn" onclick="filterServices('buff')">Dịch Vụ FB / YTB / TikTok</button>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="grid" id="service-grid">
+
+            <!-- 1. Cày Thuê Roblox -->
+            <div class="card" data-category="roblox">
+                <div>
+                    <span class="badge hot">Hot</span>
+                    <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3>Cày Thuê Roblox (Blox Fruits)</h3>
+                    <ul class="price-list">
+                        <li><span>Cày Level (1 -> Max)</span> <span class="price">50.000đ</span></li>
+                        <li><span>Lấy Godhuman / Sanguine Art</span> <span class="price">40.000đ</span></li>
+                        <li><span>Up Tộc V4 Full Gear</span> <span class="price">70.000đ</span></li>
+                        <li><span>Lấy CDK / Shark Anchor</span> <span class="price">35.000đ</span></li>
+                        <li><span>Treo Mastery / Farm Beli</span> <span class="price">20.000đ</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Cày Thuê Roblox')">Đặt Dịch Vụ Ngay</button>
+            </div>
+
+            <!-- 2. Dame Acc / Unlock MXH -->
+            <div class="card" data-category="dame">
+                <div>
+                    <span class="badge vip">Bảo Mật</span>
+                    <div class="card-icon"><i class="fa-solid fa-user-Astronaut"></i></div>
+                    <h3>Dame Acc & Unlock Tài Khoản</h3>
+                    <ul class="price-list">
+                        <li><span>Dame Acc Facebook (Bay màu nhanh)</span> <span class="price">Liên hệ</span></li>
+                        <li><span>Dame Kênh TikTok / Page giả mạo</span> <span class="price">Liên hệ</span></li>
+                        <li><span>Mở khóa FB dạng 956 (Két sắt tím)</span> <span class="price">100.000đ+</span></li>
+                        <li><span>Mở khóa FB dạng 282 / Trình tạo mã</span> <span class="price">150.000đ+</span></li>
+                        <li><span>Bảo kê tài khoản / Chống rip</span> <span class="price">200.000đ/tháng</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Dame / Unlock Acc')">Yêu Cầu Xử Lý</button>
+            </div>
+
+            <!-- 3. Bán Tài Nguyên MXH -->
+            <div class="card" data-category="resource">
+                <div>
+                    <span class="badge hot">Sẵn Hàng</span>
+                    <div class="card-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+                    <h3>Cung Cấp Tài Nguyên (Via / Clone)</h3>
+                    <ul class="price-list">
+                        <li><span>Via Việt Cổ (Trên 2-5 năm, cực trâu)</span> <span class="price">35.000đ/acc</span></li>
+                        <li><span>Via XMDT / Via 902 chạy Ads</span> <span class="price">65.000đ/acc</span></li>
+                        <li><span>Clone FB 2FA + Hotmail (Lô 10c)</span> <span class="price">25.000đ</span></li>
+                        <li><span>Acc Roblox Random Trái Đỏ / Tộc V4</span> <span class="price">20.000đ - 99.000đ</span></li>
+                        <li><span>Tài khoản Gmail / Hotmail cổ</span> <span class="price">3.000đ/acc</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Mua Tài Nguyên Via/Clone')">Mua Tài Nguyên</button>
+            </div>
+
+            <!-- 4. Dịch vụ Facebook & TikTok -->
+            <div class="card" data-category="buff">
+                <div>
+                    <div class="card-icon"><i class="fa-brands fa-facebook"></i></div>
+                    <h3>Tăng Tương Tác Facebook & TikTok</h3>
+                    <ul class="price-list">
+                        <li><span>Buff Follow Facebook / Fanpage (Bảo hành)</span> <span class="price">25.000đ / 1k</span></li>
+                        <li><span>Buff Follow TikTok người thật</span> <span class="price">45.000đ / 1k</span></li>
+                        <li><span>Buff Like / Tim bài viết tự động</span> <span class="price">15.000đ / 1k</span></li>
+                        <li><span>Tăng Mắt Livestream FB / TikTok</span> <span class="price">30.000đ / ca</span></li>
+                        <li><span>Đổi tên Fanpage quá giới hạn</span> <span class="price">100.000đ</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Buff Facebook / TikTok')">Tăng Tương Tác</button>
+            </div>
+
+            <!-- 5. Dịch vụ YouTube -->
+            <div class="card" data-category="buff">
+                <div>
+                    <span class="badge vip">Uy Tín</span>
+                    <div class="card-icon"><i class="fa-brands fa-youtube"></i></div>
+                    <h3>Phát Triển Kênh YouTube</h3>
+                    <ul class="price-list">
+                        <li><span>Cày 4000 Giờ Xem Bật Kiếm Tiền</span> <span class="price">450.000đ</span></li>
+                        <li><span>Tăng 1000 Sub YouTube (Không tụt)</span> <span class="price">350.000đ</span></li>
+                        <li><span>Buff View + Like + Comment đề xuất</span> <span class="price">40.000đ / 1k</span></li>
+                        <li><span>Bán Kênh YouTube Đã Bật Kiếm Tiền</span> <span class="price">Liên hệ</span></li>
+                        <li><span>Kháng nguyên tắc cộng đồng / Gậy bản quyền</span> <span class="price">Liên hệ</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Dịch Vụ YouTube')">Đặt Gói YouTube</button>
+            </div>
+
+            <!-- 6. Thiết kế & Dịch vụ Khác -->
+            <div class="card" data-category="resource">
+                <div>
+                    <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Tiện Ích & Dịch Vụ Khác</h3>
+                    <ul class="price-list">
+                        <li><span>Nạp Robux Chính Hãng / Gamepass</span> <span class="price">Giá Rẻ</span></li>
+                        <li><span>Tạo Khung QR / Thiết kế Banner Game</span> <span class="price">30.000đ</span></li>
+                        <li><span>Share Script / Hub Tối Ưu Máy</span> <span class="price">Miễn Phí / VIP</span></li>
+                        <li><span>Giao dịch trung gian (Midman)</span> <span class="price">Phí 5k - 10k</span></li>
+                    </ul>
+                </div>
+                <button class="order-btn" onclick="openModal('Dịch Vụ Khác')">Liên Hệ Ngay</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Đặt Hàng -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="color: var(--accent); margin-bottom: 10px;">Xác Nhận Đặt Dịch Vụ</h3>
+            <p id="selectedServiceText" style="color: var(--text-sub); font-size: 14px; margin-bottom: 15px;"></p>
+            <p style="font-size: 13px; color: #cbd5e1;">Chọn nền tảng bên dưới để nhắn tin trực tiếp với Admin và tiến hành giao dịch nhanh nhất:</p>
+            
+            <div class="social-links">
+                <!-- Thay link Facebook / TikTok / Zalo của bạn vào thuộc tính href -->
+                <a href="https://facebook.com/" target="_blank" class="social-btn fb-btn">
+                    <i class="fa-brands fa-facebook-messenger"></i> Nhắn qua Facebook (KhacDuc)
+                </a>
+                <a href="https://www.tiktok.com/@ditbucte" target="_blank" class="social-btn tiktok-btn">
+                    <i class="fa-brands fa-tiktok"></i> Liên hệ qua TikTok (@ditbucte)
+                </a>
+                <a href="https://zalo.me/" target="_blank" class="social-btn zalo-btn">
+                    <i class="fa-solid fa-comment-dots"></i> Nhắn tin qua Zalo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 <strong>KhacDuc Hub</strong> - Hệ Thống Dịch Vụ Mạng Xã Hội & Game Tự Động. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Bộ lọc danh mục dịch vụ
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Mở/Đóng Popup liên hệ
+        function openModal(serviceName) {
+            document.getElementById('selectedServiceText').innerText = "Bạn đang chọn: " + serviceName;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        window.onclick = function(e) {
+            const modal = document.getElementById('orderModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
