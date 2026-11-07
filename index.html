@@ -4,32 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KhacDuc Hub - Dịch Vụ MXH & Cày Thuê Roblox</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Exclusive Theme: Deep Midnight Purple / Dark Indigo (#12032b) */
         :root {
-            --bg-dark: #0b0f19;
-            --card-bg: #151c2c;
-            --primary: #3b82f6;
-            --accent: #00f2fe;
-            --danger: #ef4444;
-            --success: #10b981;
+            --bg-dark: #12032b;
+            --bg-deep: #0c011e;
+            --bg-top: #180538;
+            --card-bg: rgba(28, 7, 62, 0.75);
+            --primary: #9333ea;
+            --primary-glow: #a855f7;
+            --accent: #d8b4fe;
+            --ice-blue: #38bdf8;
             --text-main: #f8fafc;
-            --text-sub: #94a3b8;
+            --text-sub: #cbd5e1;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b0f19 70%);
+            background-image: 
+                radial-gradient(circle at 50% -10%, rgba(168, 85, 247, 0.22) 0%, rgba(147, 51, 234, 0.1) 40%, transparent 70%),
+                radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+                linear-gradient(180deg, var(--bg-top) 0%, var(--bg-dark) 50%, var(--bg-deep) 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Glowing Deep Violet Aura Effect in Background */
+        .moon-aura {
+            position: fixed;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(216, 180, 254, 0.14) 0%, rgba(147, 51, 234, 0.08) 45%, transparent 72%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating Starlight Canvas */
+        #starlightCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Header / Navbar */
@@ -37,65 +75,112 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(10px);
+            padding: 16px 6%;
+            background: rgba(18, 3, 43, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.28);
+            box-shadow: 0 4px 30px rgba(8, 1, 20, 0.65);
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 21px;
             font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, #ffffff 0%, #d8b4fe 50%, #38bdf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.85));
         }
 
         .contact-top {
-            background: linear-gradient(90deg, #2563eb, #06b6d4);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #7e22ce 0%, #9333ea 55%, #38bdf8 100%);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 999px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(216, 180, 254, 0.45);
         }
 
         .contact-top:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.7);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.6);
         }
 
         /* Hero Banner */
         .hero {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 35px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(28, 7, 62, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            color: var(--accent);
+            padding: 7px 20px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(147, 51, 234, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge i {
+            color: var(--ice-blue);
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.8));
         }
 
         .hero h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
+            font-size: clamp(28px, 5vw, 46px);
+            font-weight: 800;
+            margin-bottom: 16px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.6px;
+            line-height: 1.2;
+            color: var(--text-main);
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.65);
         }
 
         .hero h1 span {
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            background: linear-gradient(90deg, #e9d5ff 0%, #c084fc 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.45));
         }
 
         .hero p {
             color: var(--text-sub);
-            max-width: 600px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
+            max-width: 650px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+            font-size: 15px;
         }
 
         /* Filter Tabs */
@@ -109,120 +194,200 @@
         }
 
         .tab-btn {
-            background: var(--card-bg);
+            background: rgba(28, 7, 62, 0.68);
+            backdrop-filter: blur(12px);
             color: var(--text-sub);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 22px;
-            border-radius: 30px;
+            border: 1px solid rgba(168, 85, 247, 0.28);
+            padding: 11px 24px;
+            border-radius: 999px;
             cursor: pointer;
             font-weight: 600;
-            transition: 0.3s;
+            font-size: 14px;
+            transition: all 0.28s ease;
         }
 
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--primary);
-            color: #fff;
+        .tab-btn:hover {
+            border-color: rgba(216, 180, 254, 0.65);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #7e22ce 0%, #9333ea 60%, #a855f7 100%);
+            color: #ffffff;
             border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 22px rgba(168, 85, 247, 0.55);
+            transform: translateY(-2px);
         }
 
         /* Services Grid */
-        .container {
-            max-width: 1200px;
+        .container-box {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 75px;
         }
 
-        .grid {
+        .grid-services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            transition: 0.3s;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 22px;
+            padding: 30px 28px;
+            border: 1px solid rgba(168, 85, 247, 0.28);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 15px 35px -5px rgba(8, 1, 20, 0.8), inset 0 1px 1px rgba(216, 180, 254, 0.15);
+        }
+
+        /* Glowing Violet Top Edge */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #7e22ce, #c084fc, #38bdf8, #c084fc, #7e22ce);
+            opacity: 0.9;
+            transition: opacity 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-7px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.12);
+            transform: translateY(-8px);
+            border-color: rgba(216, 180, 254, 0.7);
+            box-shadow: 0 20px 45px rgba(147, 51, 234, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.28);
         }
 
         .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             font-size: 11px;
             font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 4px 13px;
+            border-radius: 999px;
             text-transform: uppercase;
+            letter-spacing: 0.6px;
         }
 
-        .badge.hot { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
-        .badge.vip { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+        .badge.hot { 
+            background: rgba(147, 51, 234, 0.28); 
+            color: #f3e8ff; 
+            border: 1px solid rgba(216, 180, 254, 0.65);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.35);
+        }
+        .badge.vip { 
+            background: rgba(56, 189, 248, 0.16); 
+            color: #e0f2fe; 
+            border: 1px solid rgba(56, 189, 248, 0.55); 
+        }
 
         .card-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(56, 189, 248, 0.14));
+            border: 1px solid rgba(168, 85, 247, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 18px;
             color: var(--accent);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.28);
         }
 
         .card h3 {
             font-size: 20px;
+            font-weight: 800;
             margin-bottom: 12px;
-            color: #fff;
+            color: #ffffff;
+            letter-spacing: 0.2px;
         }
 
         .price-list {
             list-style: none;
-            margin: 15px 0 25px;
-            border-top: 1px dashed rgba(255,255,255,0.1);
-            padding-top: 15px;
+            margin: 14px 0 26px;
+            border-top: 1px dashed rgba(216, 180, 254, 0.22);
+            padding-top: 16px;
         }
 
         .price-list li {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: center;
+            margin-bottom: 12px;
             font-size: 14px;
             color: var(--text-sub);
+            gap: 10px;
+        }
+
+        .price-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .price-list li span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .price-list li span:first-child::before {
+            content: '✦';
+            color: var(--ice-blue);
+            font-size: 11px;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
         }
 
         .price-list li span.price {
-            color: var(--accent);
+            color: #f3e8ff;
             font-weight: 700;
+            background: rgba(147, 51, 234, 0.28);
+            border: 1px solid rgba(216, 180, 254, 0.42);
+            padding: 3px 11px;
+            border-radius: 8px;
+            white-space: nowrap;
+            font-size: 13px;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
         }
 
         .order-btn {
             width: 100%;
-            background: rgba(59, 130, 246, 0.15);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 12px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.35) 0%, rgba(56, 189, 248, 0.2) 100%);
+            color: #f3e8ff;
+            border: 1px solid rgba(216, 180, 254, 0.6);
+            padding: 13px;
+            border-radius: 14px;
             font-weight: 700;
+            font-size: 14px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.28s ease;
             text-align: center;
             text-decoration: none;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .order-btn:hover {
-            background: var(--accent);
-            color: #0b0f19;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+            background: linear-gradient(90deg, #7e22ce 0%, #9333ea 50%, #38bdf8 100%);
+            color: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.65);
+            transform: translateY(-1px);
         }
 
         /* Modal Popup */
@@ -230,90 +395,162 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
+            background: rgba(10, 1, 24, 0.85);
+            backdrop-filter: blur(10px);
             z-index: 999;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-content {
-            background: var(--card-bg);
-            border: 1px solid var(--accent);
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 420px;
+            background: rgba(28, 7, 62, 0.92);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(216, 180, 254, 0.6);
+            padding: 34px 28px;
+            border-radius: 24px;
+            max-width: 440px;
             width: 100%;
             text-align: center;
             position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(147, 51, 234, 0.35);
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 22px;
+            top: 14px;
+            right: 18px;
+            font-size: 24px;
             cursor: pointer;
-            color: var(--text-sub);
+            color: #cbd5e1;
+            transition: 0.2s;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .social-links {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 22px;
         }
 
         .social-btn {
-            padding: 12px;
-            border-radius: 8px;
+            padding: 13px 16px;
+            border-radius: 13px;
             text-decoration: none;
             color: #fff;
             font-weight: 600;
+            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.25s ease;
         }
 
-        .fb-btn { background: #1877f2; }
-        .tiktok-btn { background: #000000; border: 1px solid #333; }
-        .zalo-btn { background: #0068ff; }
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+        }
+
+        .fb-btn { 
+            background: linear-gradient(90deg, #1877f2, #0d5ab9); 
+            box-shadow: 0 4px 16px rgba(24, 119, 242, 0.4);
+            border: 1px solid rgba(147, 197, 253, 0.4);
+        }
+        .tiktok-btn { 
+            background: #0d021f; 
+            border: 1px solid rgba(216, 180, 254, 0.4); 
+        }
+        .zalo-btn { 
+            background: linear-gradient(90deg, #0068ff, #0284c7); 
+            box-shadow: 0 4px 16px rgba(0, 104, 255, 0.35);
+            border: 1px solid rgba(186, 230, 253, 0.35);
+        }
 
         footer {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 25px;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 28px 20px;
+            border-top: 1px solid rgba(168, 85, 247, 0.22);
             color: var(--text-sub);
             font-size: 14px;
+            background: rgba(12, 1, 30, 0.85);
+            backdrop-filter: blur(12px);
+        }
+
+        @media (max-width: 640px) {
+            .grid-services {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 14px 4%;
+            }
+            .logo {
+                font-size: 18px;
+            }
+            .contact-top {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Deep Purple Aura & Starlight Particles -->
+    <div class="moon-aura"></div>
+    <canvas id="starlightCanvas"></canvas>
+
+    <!-- Sticky Header -->
     <header>
-        <div class="logo"><i class="fa-solid fa-bolt"></i> KhacDuc Service</div>
+        <div class="logo">
+            <i class="fa-solid fa-bolt"></i> KhacDuc Service
+        </div>
+
         <a href="javascript:void(0)" onclick="openModal('Tư vấn dịch vụ tổng hợp')" class="contact-top">
             <i class="fa-solid fa-headset"></i> Hỗ Trợ 24/7
         </a>
     </header>
 
+    <!-- Hero Banner & Filter Tabs -->
     <section class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-wand-sparkles"></i> Deep Midnight Edition • Uy Tín 100%
+        </div>
         <h1>Hệ Thống Dịch Vụ <span>MXH & Roblox</span></h1>
-        <p>Chuyên cày thuê Blox Fruits, xử lý tài khoản MXH (Dame/Unlock), cung cấp tài nguyên Via, Clone, Reg và buff tương tác đa nền tảng uy tín - nhanh gọn.</p>
+        <p>Hệ thống chuyên cày thuê Blox Fruits, xử lý bảo mật tài khoản MXH (Dame/Unlock) và cung cấp tài nguyên Via, Clone, Reg uy tín - nhanh gọn 24/7.</p>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="filterServices('all')">Tất Cả</button>
-            <button class="tab-btn" onclick="filterServices('roblox')">Cày Thuê Roblox</button>
-            <button class="tab-btn" onclick="filterServices('dame')">Dame / Unlock Acc</button>
-            <button class="tab-btn" onclick="filterServices('resource')">Bán Tài Nguyên</button>
-            <button class="tab-btn" onclick="filterServices('buff')">Dịch Vụ FB / YTB / TikTok</button>
+            <button class="tab-btn active" onclick="filterServices('all', this)">Tất Cả</button>
+            <button class="tab-btn" onclick="filterServices('roblox', this)">Cày Thuê Roblox</button>
+            <button class="tab-btn" onclick="filterServices('dame', this)">Dame / Unlock Acc</button>
+            <button class="tab-btn" onclick="filterServices('resource', this)">Bán Tài Nguyên</button>
+            <button class="tab-btn" onclick="filterServices('other', this)">Tiện Ích Khác</button>
         </div>
     </section>
 
-    <div class="container">
-        <div class="grid" id="service-grid">
+    <!-- Main Service Cards (4 Core Cards) -->
+    <div class="container-box">
+        <div class="grid-services" id="service-grid">
 
             <!-- 1. Cày Thuê Roblox -->
             <div class="card" data-category="roblox">
@@ -329,14 +566,16 @@
                         <li><span>Treo Mastery / Farm Beli</span> <span class="price">20.000đ</span></li>
                     </ul>
                 </div>
-                <button class="order-btn" onclick="openModal('Cày Thuê Roblox')">Đặt Dịch Vụ Ngay</button>
+                <button class="order-btn" onclick="openModal('Cày Thuê Roblox (Blox Fruits)')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt Dịch Vụ Ngay
+                </button>
             </div>
 
             <!-- 2. Dame Acc / Unlock MXH -->
             <div class="card" data-category="dame">
                 <div>
                     <span class="badge vip">Bảo Mật</span>
-                    <div class="card-icon"><i class="fa-solid fa-user-Astronaut"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-user-secret"></i></div>
                     <h3>Dame Acc & Unlock Tài Khoản</h3>
                     <ul class="price-list">
                         <li><span>Dame Acc Facebook (Bay màu nhanh)</span> <span class="price">Liên hệ</span></li>
@@ -346,7 +585,9 @@
                         <li><span>Bảo kê tài khoản / Chống rip</span> <span class="price">200.000đ/tháng</span></li>
                     </ul>
                 </div>
-                <button class="order-btn" onclick="openModal('Dame / Unlock Acc')">Yêu Cầu Xử Lý</button>
+                <button class="order-btn" onclick="openModal('Dame / Unlock Tài Khoản')">
+                    <i class="fa-solid fa-bolt"></i> Yêu Cầu Xử Lý
+                </button>
             </div>
 
             <!-- 3. Bán Tài Nguyên MXH -->
@@ -363,44 +604,13 @@
                         <li><span>Tài khoản Gmail / Hotmail cổ</span> <span class="price">3.000đ/acc</span></li>
                     </ul>
                 </div>
-                <button class="order-btn" onclick="openModal('Mua Tài Nguyên Via/Clone')">Mua Tài Nguyên</button>
+                <button class="order-btn" onclick="openModal('Mua Tài Nguyên Via / Clone')">
+                    <i class="fa-solid fa-bag-shopping"></i> Mua Tài Nguyên
+                </button>
             </div>
 
-            <!-- 4. Dịch vụ Facebook & TikTok -->
-            <div class="card" data-category="buff">
-                <div>
-                    <div class="card-icon"><i class="fa-brands fa-facebook"></i></div>
-                    <h3>Tăng Tương Tác Facebook & TikTok</h3>
-                    <ul class="price-list">
-                        <li><span>Buff Follow Facebook / Fanpage (Bảo hành)</span> <span class="price">25.000đ / 1k</span></li>
-                        <li><span>Buff Follow TikTok người thật</span> <span class="price">45.000đ / 1k</span></li>
-                        <li><span>Buff Like / Tim bài viết tự động</span> <span class="price">15.000đ / 1k</span></li>
-                        <li><span>Tăng Mắt Livestream FB / TikTok</span> <span class="price">30.000đ / ca</span></li>
-                        <li><span>Đổi tên Fanpage quá giới hạn</span> <span class="price">100.000đ</span></li>
-                    </ul>
-                </div>
-                <button class="order-btn" onclick="openModal('Buff Facebook / TikTok')">Tăng Tương Tác</button>
-            </div>
-
-            <!-- 5. Dịch vụ YouTube -->
-            <div class="card" data-category="buff">
-                <div>
-                    <span class="badge vip">Uy Tín</span>
-                    <div class="card-icon"><i class="fa-brands fa-youtube"></i></div>
-                    <h3>Phát Triển Kênh YouTube</h3>
-                    <ul class="price-list">
-                        <li><span>Cày 4000 Giờ Xem Bật Kiếm Tiền</span> <span class="price">450.000đ</span></li>
-                        <li><span>Tăng 1000 Sub YouTube (Không tụt)</span> <span class="price">350.000đ</span></li>
-                        <li><span>Buff View + Like + Comment đề xuất</span> <span class="price">40.000đ / 1k</span></li>
-                        <li><span>Bán Kênh YouTube Đã Bật Kiếm Tiền</span> <span class="price">Liên hệ</span></li>
-                        <li><span>Kháng nguyên tắc cộng đồng / Gậy bản quyền</span> <span class="price">Liên hệ</span></li>
-                    </ul>
-                </div>
-                <button class="order-btn" onclick="openModal('Dịch Vụ YouTube')">Đặt Gói YouTube</button>
-            </div>
-
-            <!-- 6. Thiết kế & Dịch vụ Khác -->
-            <div class="card" data-category="resource">
+            <!-- 4. Thiết kế & Dịch vụ Khác -->
+            <div class="card" data-category="other">
                 <div>
                     <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <h3>Tiện Ích & Dịch Vụ Khác</h3>
@@ -411,7 +621,9 @@
                         <li><span>Giao dịch trung gian (Midman)</span> <span class="price">Phí 5k - 10k</span></li>
                     </ul>
                 </div>
-                <button class="order-btn" onclick="openModal('Dịch Vụ Khác')">Liên Hệ Ngay</button>
+                <button class="order-btn" onclick="openModal('Tiện Ích & Dịch Vụ Khác')">
+                    <i class="fa-solid fa-paper-plane"></i> Liên Hệ Ngay
+                </button>
             </div>
 
         </div>
@@ -421,37 +633,42 @@
     <div class="modal" id="orderModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 style="color: var(--accent); margin-bottom: 10px;">Xác Nhận Đặt Dịch Vụ</h3>
-            <p id="selectedServiceText" style="color: var(--text-sub); font-size: 14px; margin-bottom: 15px;"></p>
-            <p style="font-size: 13px; color: #cbd5e1;">Chọn nền tảng bên dưới để nhắn tin trực tiếp với Admin và tiến hành giao dịch nhanh nhất:</p>
+            <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(147, 51, 234, 0.22); color: #d8b4fe; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 22px; border: 1px solid rgba(216, 180, 254, 0.5); box-shadow: 0 0 20px rgba(147, 51, 234, 0.35);">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <h3 style="color: #ffffff; font-size: 20px; font-weight: 800; margin-bottom: 10px;">Xác Nhận Đặt Dịch Vụ</h3>
+            <p id="selectedServiceText" style="color: #f3e8ff; font-weight: 600; font-size: 14px; margin-bottom: 14px; background: rgba(147, 51, 234, 0.28); padding: 9px 14px; border-radius: 10px; border: 1px solid rgba(216, 180, 254, 0.45);"></p>
+            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.55;">Chọn nền tảng bên dưới để nhắn tin trực tiếp với Admin và tiến hành giao dịch nhanh nhất:</p>
             
             <div class="social-links">
-                <!-- Thay link Facebook / TikTok / Zalo của bạn vào thuộc tính href -->
-                <a href="https://facebook.com/" target="_blank" class="social-btn fb-btn">
-                    <i class="fa-brands fa-facebook-messenger"></i> Nhắn qua Facebook (KhacDuc)
+                <a href="https://www.facebook.com/profile.php?id=61577858399885&rdid=9yEHgTl3VPhyvkbh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1KX82ZSss9#" target="_blank" rel="noopener noreferrer" class="social-btn fb-btn">
+                    <i class="fa-brands fa-facebook-messenger"></i> Nhắn qua Facebook (KhacDuc🌊🐧)
                 </a>
-                <a href="https://www.tiktok.com/@ditbucte" target="_blank" class="social-btn tiktok-btn">
+                <a href="https://www.tiktok.com/@ditbucte" target="_blank" rel="noopener noreferrer" class="social-btn tiktok-btn">
                     <i class="fa-brands fa-tiktok"></i> Liên hệ qua TikTok (@ditbucte)
                 </a>
-                <a href="https://zalo.me/" target="_blank" class="social-btn zalo-btn">
+                <a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" class="social-btn zalo-btn">
                     <i class="fa-solid fa-comment-dots"></i> Nhắn tin qua Zalo
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 <strong>KhacDuc Hub</strong> - Hệ Thống Dịch Vụ Mạng Xã Hội & Game Tự Động. All rights reserved.</p>
+        <p>© 2026 <strong>KhacDuc Hub 🌊🐧</strong> - Hệ Thống Dịch Vụ Mạng Xã Hội & Cày Thuê Roblox Uy Tín.</p>
     </footer>
 
     <script>
         // Bộ lọc danh mục dịch vụ
-        function filterServices(category) {
+        function filterServices(category, btnElement) {
             const cards = document.querySelectorAll('.card');
             const buttons = document.querySelectorAll('.tab-btn');
 
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
 
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -464,7 +681,7 @@
 
         // Mở/Đóng Popup liên hệ
         function openModal(serviceName) {
-            document.getElementById('selectedServiceText').innerText = "Bạn đang chọn: " + serviceName;
+            document.getElementById('selectedServiceText').innerText = "Gói đang chọn: " + serviceName;
             document.getElementById('orderModal').style.display = 'flex';
         }
 
@@ -477,7 +694,68 @@
             if (e.target === modal) {
                 closeModal();
             }
+        };
+
+        // Hiệu ứng hạt ánh trăng & sao bạc lấp lánh (Moonlight Starlight Particles)
+        const canvas = document.getElementById('starlightCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+
+        function initStars() {
+            stars = [];
+            const count = Math.min(70, Math.floor(window.innerWidth / 20));
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.8 + 0.4,
+                    alpha: Math.random() * 0.75 + 0.2,
+                    speedY: -(Math.random() * 0.25 + 0.05),
+                    twinkleSpeed: Math.random() * 0.015 + 0.005,
+                    color: Math.random() > 0.4 ? '#d8b4fe' : '#38bdf8'
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.y += star.speedY;
+                star.alpha += star.twinkleSpeed;
+                if (star.alpha > 0.9 || star.alpha < 0.2) {
+                    star.twinkleSpeed = -star.twinkleSpeed;
+                }
+                if (star.y < 0) {
+                    star.y = canvas.height;
+                    star.x = Math.random() * canvas.width;
+                }
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = star.color;
+                ctx.globalAlpha = Math.max(0.1, Math.min(1, star.alpha));
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = '#a855f7';
+                ctx.fill();
+            });
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initStars();
+        });
+
+        window.onload = function() {
+            resizeCanvas();
+            initStars();
+            animateStars();
+        };
     </script>
 </body>
 </html>
